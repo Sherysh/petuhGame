@@ -4,28 +4,47 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed;
-    private Vector3 _direction;
-    // Start is called before the first frame update
+    [SerializeField] private float _speed; // Скорость движения, а в дальнейшем ускорение
+    [SerializeField] private Vector3 _direction; // Направление движения
+    [SerializeField] private Vector2 _rotation;
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        _direction.z = -(Input.GetAxis("Horizontal"));
-        _direction.x = Input.GetAxis("Vertical");
+        _direction.z = Input.GetAxis("Vertical");
+        _direction.x = Input.GetAxis("Horizontal");
+        _rotation.x += Input.GetAxis("Mouse X");
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            isGrounded = false;
+            GetComponent<Rigidbody>().AddForce(new Vector3(0, 300, 0));
+        }
     }
 
     private void FixedUpdate()
     {
         Move();
+        Rotation();
     }
 
     private void Move()
     {
-        transform.Translate(_direction * speed * Time.fixedDeltaTime);
+        Vector3 speed = _direction * _speed * Time.deltaTime;
+        transform.Translate(speed);
+    }
+
+    private void Rotation()
+    {
+        transform.localRotation = Quaternion.Euler(0, _rotation.x, 0);
+    }
+
+    public bool isGrounded;
+    private void OnCollisionEnter()
+    {
+        isGrounded = true; 
     }
 }
