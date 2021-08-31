@@ -1,23 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private Quaternion _nullRotation;
+    private GameObject petuh;
 
-    [SerializeField] private Transform _target;
-
-    // Start is called before the first frame update
     void Start()
     {
-        
+        petuh = GameObject.Find("Petuh");
     }
 
-    // Update is called once per frame
-    void OnTriggerStay()
+    void OnTriggerStay(Collider other)
     {
-        Vector3 relativePos = _target.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
-        transform.rotation = rotation;
+        if (other.gameObject.name == petuh.name)
+        {
+            transform.LookAt(petuh.GetComponent<Transform>());
+        }
     }
 }

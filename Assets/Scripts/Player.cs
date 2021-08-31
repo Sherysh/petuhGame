@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    private bool isGrounded;
     [SerializeField] private float _speed; // Скорость движения, а в дальнейшем ускорение
     [SerializeField] private Vector3 _direction; // Направление движения
     [SerializeField] private Vector2 _rotation;
@@ -18,10 +20,18 @@ public class Player : MonoBehaviour
         _direction.z = Input.GetAxis("Vertical");
         _direction.x = Input.GetAxis("Horizontal");
         _rotation.x += Input.GetAxis("Mouse X");
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetButtonDown("Jump") == true && isGrounded)
         {
             isGrounded = false;
             GetComponent<Rigidbody>().AddForce(new Vector3(0, 300, 0));
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            _speed = 8f;
+        }
+        else
+        {
+            _speed = 4f;
         }
     }
 
@@ -42,7 +52,6 @@ public class Player : MonoBehaviour
         transform.localRotation = Quaternion.Euler(0, _rotation.x, 0);
     }
 
-    public bool isGrounded;
     private void OnCollisionEnter()
     {
         isGrounded = true; 

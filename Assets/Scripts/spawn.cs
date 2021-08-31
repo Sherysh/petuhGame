@@ -5,11 +5,12 @@ using UnityEngine;
 public class spawn : MonoBehaviour
 {
     [SerializeField] GameObject _FemaleWithKnife;
+    //[SerializeField] GameObject _targetPos;
 
-    // Start is called before the first frame update
     void Start()
     {
-        Instantiate(_FemaleWithKnife, transform);
+        GameObject enemy = Instantiate(_FemaleWithKnife, transform);
+
     }
 
 }
