@@ -15158,6 +15158,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6438106, guid: c578b4309ba7d374a81ecb4ead9452b4, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c578b4309ba7d374a81ecb4ead9452b4, type: 3}
 --- !u!4 &1211938928 stripped
@@ -15346,7 +15350,6 @@ MonoBehaviour:
   _speed: 4
   _direction: {x: 0, y: 0, z: 0}
   _rotation: {x: 0, y: 0}
-  isGrounded: 0
 --- !u!65 &1241621632
 BoxCollider:
   m_ObjectHideFlags: 0

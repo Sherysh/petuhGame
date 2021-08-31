@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
             isGrounded = false;
             GetComponent<Rigidbody>().AddForce(new Vector3(0, 300, 0));
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             _speed = 8f;
         }
