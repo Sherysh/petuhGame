@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speed; // Скорость движения, а в дальнейшем ускорение
     [SerializeField] private Vector3 _direction; // Направление движения
     [SerializeField] private Vector2 _rotation;
+    [SerializeField] private Animator _animator;
 
     void Start()
     {
@@ -25,14 +26,25 @@ public class Player : MonoBehaviour
             isGrounded = false;
             GetComponent<Rigidbody>().AddForce(new Vector3(0, 300, 0));
         }
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (_direction == Vector3.zero)
         {
+            _animator.SetBool("Run", false);
+            _animator.SetBool("Walk", false);
+            _speed = 4f;
+        }
+        else if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _animator.SetBool("Run", true);
+            _animator.SetBool("Walk", false);
             _speed = 8f;
         }
         else
         {
+            _animator.SetBool("Run", false);
+            _animator.SetBool("Walk", true);
             _speed = 4f;
         }
+
     }
 
     private void FixedUpdate()
