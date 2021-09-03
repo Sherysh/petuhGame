@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
+    public int _timer;
     private bool isGrounded;
     [SerializeField] private float _speed; // Скорость движения, а в дальнейшем ускорение
     [SerializeField] private Vector3 _direction; // Направление движения
@@ -51,6 +51,24 @@ public class Player : MonoBehaviour
     {
         Move();
         Rotation();
+        Eating();
+    }
+
+    private void Eating()
+    {
+        Debug.Log(_timer);
+        Debug.Log(_animator.GetBool("Eat"));
+        if (_timer == 0)
+        {
+            _animator.SetBool("Eat", false);
+        }
+        else if (_timer > 0)
+        {
+            _animator.SetBool("Eat", true);
+            _timer = _timer - 1;
+        }
+        else
+            _timer = 0;
     }
 
     private void Move()
