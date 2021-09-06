@@ -5,10 +5,16 @@ using UnityEngine;
 public class Turn : MonoBehaviour
 {
     [SerializeField] private Vector2 _rotation;
+    private GameObject _target;
 
+
+    private void Awake()
+    {
+        //Cursor.lockState = CursorLockMode.Locked;
+    }
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        _target = GameObject.Find("Toon Chicken");
     }
 
     void Update()
@@ -24,5 +30,8 @@ public class Turn : MonoBehaviour
             _rotation.y = 90;
         else if (_rotation.y < 90)
             _rotation.y = -90;
+
+        //transform.LookAt(_target.GetComponent<Transform>());
+
     }
 }

@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public int _timer;
     private bool isGrounded;
+    private GameObject _menu;
+    private GameObject _gui;
     [SerializeField] private float _speed; // Скорость движения, а в дальнейшем ускорение
     [SerializeField] private Vector3 _direction; // Направление движения
     [SerializeField] private Vector2 _rotation;
@@ -13,7 +15,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-
+        _gui = GameObject.Find("GUI");
+        _menu = GameObject.Find("NotPauseMenu");
+        _menu.SetActive(false);
     }
 
     void Update()
@@ -43,6 +47,11 @@ public class Player : MonoBehaviour
             _animator.SetBool("Run", false);
             _animator.SetBool("Walk", true);
             _speed = 4f;
+        }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            _menu.SetActive(true);
+            _gui.SetActive(false);
         }
 
     }

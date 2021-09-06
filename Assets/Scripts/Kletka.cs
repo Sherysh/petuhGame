@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class Kletka : MonoBehaviour
 {
-    //private GameObject _zone;
     private GameObject _sharik;
-    private GameObject _reshetka;
+    private GameObject _goodLight;
 
     void Start()
     {
-        //_zone = GameObject.Find("Zone");
         _sharik = GameObject.Find("Sharik");
-        _reshetka = GameObject.Find("Reshetka");
+        _goodLight = GameObject.Find("SucsessLight");
+        _goodLight.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == _sharik.name)
         {
-            _reshetka.SetActive(false);
+            _goodLight.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
 }
