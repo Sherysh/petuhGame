@@ -56,8 +56,8 @@ public class Player : MonoBehaviour
 
     private void Eating()
     {
-        Debug.Log(_timer);
-        Debug.Log(_animator.GetBool("Eat"));
+        //Debug.Log(_timer);
+        //Debug.Log(_animator.GetBool("Eat"));
         if (_timer == 0)
         {
             _animator.SetBool("Eat", false);
