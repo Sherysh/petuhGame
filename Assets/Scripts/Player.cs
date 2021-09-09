@@ -13,10 +13,13 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector2 _rotation;
     [SerializeField] private Animator _animator;
 
+    private void Awake()
+    {
+        _gui = GameObject.Find("GUIPanel");
+        _menu = GameObject.Find("MenuPanel");
+    }
     void Start()
     {
-        _gui = GameObject.Find("GUI");
-        _menu = GameObject.Find("NotPauseMenu");
         _menu.SetActive(false);
     }
 
@@ -50,6 +53,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Escape))
         {
+            Cursor.lockState = CursorLockMode.None;
             _menu.SetActive(true);
             _gui.SetActive(false);
         }

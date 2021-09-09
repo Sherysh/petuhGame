@@ -10,11 +10,12 @@ public class Turn : MonoBehaviour
 
     private void Awake()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
+        _target = GameObject.Find("Toon Chicken");
     }
     void Start()
     {
-        _target = GameObject.Find("Toon Chicken");
+
     }
 
     void Update()
