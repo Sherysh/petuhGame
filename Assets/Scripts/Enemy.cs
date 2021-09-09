@@ -3,18 +3,18 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Quaternion _nullRotation;
-    private GameObject petuh;
+    private GameObject _petuh;
 
     void Start()
     {
-        petuh = GameObject.Find("Petuh");
+        _petuh = GameObject.Find("Petuh");
     }
 
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == petuh.name)
+        if (other.gameObject.name == _petuh.name)
         {
-            transform.LookAt(petuh.GetComponent<Transform>());
+            transform.LookAt(_petuh.GetComponent<Transform>());
         }
     }
 }
